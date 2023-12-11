@@ -49,7 +49,7 @@ jobs:
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           passphrase: ${{ secrets.SSH_PASSWORD }}
           port: ${{ secrets.SSH_PORT }}
-          source: "services,scripts,Dockerfile,docker-compose.yml"
+          source: "services,scripts,Dockerfile,docker-compose.yml,v2"
           target: /home/${{ secrets.SSH_USER }}/hotel_booking_system
       
       - name: Build and up hotel-booking-system
