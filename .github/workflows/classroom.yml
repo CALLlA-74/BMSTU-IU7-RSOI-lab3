@@ -72,18 +72,20 @@ jobs:
             echo ${{ secrets.SSH_PASSWORD }} | sudo ./scripts/wait-script.sh
   
   api-test:
-      - name: Run API Tests
-        needs: [deploy]
+      name: Run API Tests
+      needs: [deploy]
     #    timeout-minutes: 5
-        run: ./scripts/test-script.sh
-        env:
-          VARIANT: v2
-          SERVICE_NAME: loyalty_service
-          PORT_NUMBER: 8050
+      runs-on: ubuntu-latest
+      steps:
+        - run: ./scripts/test-script.sh
+          env:
+            VARIANT: v2
+            SERVICE_NAME: loyalty_service
+            PORT_NUMBER: 8050
   
-      - uses: education/autograding@v1
-        id: autograder
-        continue-on-error: true
+        - uses: education/autograding@v1
+          id: autograder
+          continue-on-error: true
   
    #  - name: Github auto grader mark
    #    uses: Romanow/google-sheet-autograder-marker@v1.0
