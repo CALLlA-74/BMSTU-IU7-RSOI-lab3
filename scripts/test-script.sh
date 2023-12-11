@@ -2,9 +2,9 @@
 
 set -e
 
-variant=${1:-${v2}}
-service=${2:-${loyalty_service}}
-port=${3:-${8050}}
+variant=${1:-${VARIANT}}
+service=${2:-${SERVICE_NAME}}
+port=${3:-${PORT_NUMBER}}
 
 path=$(dirname "$0")
 
@@ -38,7 +38,7 @@ step() {
 
   docker compose "$operation" "$service"
   if [[ "$operation" == "start" ]]; then
-    "$path"/wait-for.sh -t 120 "http://localhost:$port/manage/health" -- echo "Host localhost:$port is active"
+    "$path"/wait-for.sh -t 120 "http://95.163.210.40:$port/manage/health" -- echo "Host 95.163.210.40:$port is active"
   fi
 
   newman run \
