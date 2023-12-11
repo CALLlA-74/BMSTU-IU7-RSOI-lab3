@@ -56,10 +56,7 @@ async def get_reservations(username: str = Header(alias='X-User-Name')):
                 status.HTTP_404_NOT_FOUND: ResponsesEnum.ErrorResponse.value
             })
 async def get_reservation_by_uid(reservationUid: UUID, username: str = Header(alias='X-User-Name')):
-    reservation = await GatewayService.get_reservation_by_uid(reservationUid, username)
-    if reservation is None:
-        return JSONResponse(status_code=status.HTTP_404_NOT_FOUND, content=schemas.ErrorResponse().model_dump())
-    return reservation
+    return await GatewayService.get_reservation_by_uid(reservationUid, username)
 
 
 @router.post(f'{settings["prefix"]}/reservations', status_code=status.HTTP_200_OK,
@@ -92,4 +89,6 @@ async def delete_reservation(reservationUid: UUID, username: str = Header(alias=
     resp = await GatewayService.delete_reservation(reservationUid, username)
     if resp is None:
         return JSONResponse(status_code=status.HTTP_404_NOT_FOUND, content=schemas.ErrorResponse().model_dump())
+    if type(resp) == type(Response()) or type(resp) == type(JSONResponse(content={})):
+        return resp
     return Response(status_code=status.HTTP_204_NO_CONTENT)
