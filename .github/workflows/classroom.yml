@@ -81,11 +81,11 @@ jobs:
             fetch-depth: 0
           
         - timeout-minutes: 5
-          run: ./scripts/test-script.sh
-          env:
-            VARIANT: v2
-            SERVICE_NAME: loyalty_service
-            PORT_NUMBER: 8050
+          run: ./scripts/test-script.sh v2 loyalty_service 8050
+        #  env:
+        #    VARIANT: v2
+        #    SERVICE_NAME: loyalty_service
+        #    PORT_NUMBER: 8050
   
         - uses: education/autograding@v1
           id: autograder
