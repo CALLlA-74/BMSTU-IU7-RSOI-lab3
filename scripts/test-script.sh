@@ -2,9 +2,9 @@
 
 set -e
 
-variant=${1:-${VARIANT}}
-service=${2:-${SERVICE_NAME}}
-port=${3:-${PORT_NUMBER}}
+variant=${1:-${v2}}
+service=${2:-${loyalty_service}}
+port=${3:-${8050}}
 
 path=$(dirname "$0")
 
