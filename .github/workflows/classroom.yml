@@ -74,14 +74,14 @@ jobs:
   api-test:
       name: Run API Tests
       needs: [deploy]
-    #    timeout-minutes: 5
       runs-on: ubuntu-latest
       steps:
         - uses: actions/checkout@v4
           with:
             fetch-depth: 0
           
-        - run: ./scripts/test-script.sh
+        - timeout-minutes: 5
+          run: ./scripts/test-script.sh
           env:
             VARIANT: v2
             SERVICE_NAME: loyalty_service
