@@ -77,6 +77,10 @@ jobs:
     #    timeout-minutes: 5
       runs-on: ubuntu-latest
       steps:
+        - uses: actions/checkout@v4
+          with:
+            fetch-depth: 0
+          
         - run: ./scripts/test-script.sh
           env:
             VARIANT: v2
