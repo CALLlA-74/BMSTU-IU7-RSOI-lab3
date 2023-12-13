@@ -20,7 +20,7 @@ async def post(url: str, headers={}, data={}, timeout=5):
         return Response(status_code=503)
 
 
-async def patch(url: str, headers={}, data={}, timeout=5):      # is_get=False
+async def patch(url: str, headers={}, data={}, timeout=5):
     try:
         #if is_get:
         #    return CustomCircuitBreaker.send_request(url, requests.patch, headers, data, timeout)
